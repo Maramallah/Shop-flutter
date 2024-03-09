@@ -22,7 +22,7 @@ List<Shops> dataShops = [
     category: 'Footwear',
     branches: ['mahtt el raml', 'smouha', 'siof'],
     rating: 4.0,
-    image: 'assets/images/shoe.png',
+    image: 'assets/images/shoe.webp',
   ),
   Shops(
     name: 'H&M',
@@ -99,7 +99,7 @@ List<Shops> dataShops = [
     category: 'Footwear',
     branches: ['smouha', 'gleem', 'miami'],
     rating: 4.3,
-    image: 'assets/images/shoe.png',
+    image: 'assets/images/shoe.webp',
   ),
   Shops(
     name: 'Young Fashionistas',
