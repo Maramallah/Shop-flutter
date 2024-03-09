@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:shop/Screens/detailsScreen.dart';
 import 'package:shop/Screens/typesscreen.dart';
 import 'package:shop/model/Shop.dart';
 
 
 class HomeGrid extends StatelessWidget {
-  const HomeGrid({super.key, required this.category});
+  const HomeGrid({super.key, required this.category, required this.image});
   final String category;
+  final String image;
+
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
         Navigator.of(context).push(
-        MaterialPageRoute(builder: (ctx)=>TypesScreen( category: category))
+        MaterialPageRoute(builder: (ctx)=>DetailesScreen( category: category))
       ) ;
       },
       child: Container(
