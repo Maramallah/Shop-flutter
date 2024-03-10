@@ -1,21 +1,33 @@
+
 import 'package:flutter/material.dart';
 import 'package:shop/Screens/detailsScreen.dart';
-import 'package:shop/Screens/typesscreen.dart';
-import 'package:shop/model/Shop.dart';
+import 'package:shop/data.dart';
 
 
-class HomeGrid extends StatelessWidget {
-  const HomeGrid({super.key, required this.category, required this.image});
+
+class HomeGrid extends StatefulWidget {
+  const HomeGrid({super.key, required this.category});
   final String category;
-  final String image;
+  
 
+  @override
+  State<HomeGrid> createState() => _HomeGridState();
+}
 
+class _HomeGridState extends State<HomeGrid> {
+  List<String> images=[];
+  @override
+  void initState() {
+    Set<String> imagesSet = dataShops.where((e) => e.category == widget.category).map((e) => e.image).toSet();
+    images = imagesSet.toList();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
         Navigator.of(context).push(
-        MaterialPageRoute(builder: (ctx)=>DetailesScreen( category: category))
+        MaterialPageRoute(builder: (ctx)=>DetailesScreen( category: widget.category))
       ) ;
       },
       child: Container(
@@ -25,12 +37,19 @@ class HomeGrid extends StatelessWidget {
                   color: Colors.white,
                 ),
                   
-                  child: Center(child: Text(category, style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    
-                  ),
-                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: 100,
+                        height: 100,
+                        child: Image.asset(images[0])
+                        ),
+                      Text(widget.category, style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                      ),
+                    ],
                   ),),
     );
   }

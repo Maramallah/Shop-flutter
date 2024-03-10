@@ -16,7 +16,6 @@ class __TypesScreenState extends State<TypesScreen> {
   @override
   void initState() {
     var categories = dataShops.map((e) => e.category).toList();
-    var image = dataShops.map((e) => e.image).toList();
     var categoriesSet = categories.toSet();
    
     filteredData = categoriesSet.toList();
@@ -45,7 +44,7 @@ class __TypesScreenState extends State<TypesScreen> {
             children: filteredData
                 .map(
                   (e) => HomeGrid(
-                    category: e,image: e,
+                    category: e
                   ),
                 )
                 .toList(),
