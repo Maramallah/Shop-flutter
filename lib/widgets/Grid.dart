@@ -40,10 +40,11 @@ class _HomeGridState extends State<HomeGrid> {
                   child: Column(
                     children: [
                       SizedBox(
-                        width: 100,
+                        width: 110,
                         height: 100,
                         child: Image.asset(images[0])
                         ),
+                        const SizedBox(height: 25,),
                       Text(widget.category, style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,

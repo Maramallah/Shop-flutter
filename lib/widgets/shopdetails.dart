@@ -15,24 +15,31 @@ class ShopDetail extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(20)
         ),
-        child: Column(
-          children: [
-            Text(category.name , style: const TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.bold
-            ),
-            ),
-             Text(category.rating.toString() , style: const TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.bold
-            ),
-            ),
-             Text(category.branches.toString() , style: const TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.bold
-            ),
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(category.name , style: const TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold
+              ),
+              ),
+              const SizedBox(height: 13,),
+               Text('Rating : ${category.rating.toString()}' , style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold
+              ),
+              ),
+              const SizedBox(height: 15,),
+               Text(category.branches.toString() , style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold
+              ),
+              ),
+            ],
+          ),
         ),
       ),
     );

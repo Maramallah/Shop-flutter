@@ -33,7 +33,15 @@ class __TypesScreenState extends State<TypesScreen> {
             end: Alignment.bottomRight,
           ),
         ),
-        child: Padding(
+
+        child:Column(
+          children: [
+              AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              toolbarHeight: 10,
+            ),
+             Padding(
           padding: const EdgeInsets.all(10.0),
           child: GridView(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -50,6 +58,10 @@ class __TypesScreenState extends State<TypesScreen> {
                 .toList(),
           ),
         ),
+
+          ],
+        )
+        
       ),
     );
   }

@@ -20,7 +20,15 @@ class DetailesScreen extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
-        ), child : Padding(
+        ),
+         child : Column(
+          children: [
+              AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              toolbarHeight: 10,
+            ),
+            Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListView(
               children: dataShops.where((e) => e.category==category).map((e) => 
@@ -29,6 +37,9 @@ class DetailesScreen extends StatelessWidget {
             ),
             
           )
+          ],
+         )
+        
         
       ));
     

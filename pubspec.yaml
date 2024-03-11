@@ -30,6 +30,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  toggle_switch: ^2.1.0
+
+  font_awesome_flutter: ^10.7.0
+
+  url_launcher: ^6.0.10
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -63,6 +68,7 @@ flutter:
     -  assets/images/women.png
     -  assets/images/childern.png
     -  assets/images/shoe.webp
+    -  assets/images/registier.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
