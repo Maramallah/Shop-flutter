@@ -70,8 +70,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         ),
       ],
     ).animate(_controller);
-    _controller.repeat(reverse: true);
-    _controller.forward();
+    _controller.repeat();
+   
   }
    @override
   void dispose() {

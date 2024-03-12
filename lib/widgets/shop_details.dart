@@ -8,7 +8,7 @@ class ShopDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white.withOpacity(.1),
+      color: Colors.white.withOpacity(.5),
       child: Container(
         width: 150,
         height: 150,

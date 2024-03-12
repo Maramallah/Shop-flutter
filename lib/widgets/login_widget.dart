@@ -47,7 +47,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   },
                 );
               },
-              icon: Icon(visText ? Icons.visibility_off : Icons.visibility),
+              icon: Icon(visText ? Icons.visibility : Icons.visibility_off),
             ),
           ),
           const SizedBox(

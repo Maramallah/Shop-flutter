@@ -59,7 +59,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                   },
                 );
               },
-              icon: Icon(visText ? Icons.visibility_off : Icons.visibility),
+              icon: Icon(visText ? Icons.visibility : Icons.visibility_off),
             ),
           ),
           TextFormFieldWidget(
