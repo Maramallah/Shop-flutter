@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop/constants/colors.dart';
+import 'package:shop/screens/auth_screen.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -108,10 +109,15 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const AuthScreen(
+                      isLogin: false,
+                    ),
+                  ),
+                );},
                           style: ElevatedButton.styleFrom(
-                            primary: Color.fromARGB(255, 115, 124, 220).withOpacity(.5),
-                            onPrimary: Colors.white,
+                            foregroundColor: Colors.white, backgroundColor: Color.fromARGB(255, 115, 124, 220).withOpacity(.5),
                             fixedSize: const Size(250, 45),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0),
@@ -122,10 +128,15 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                         ),
                         const SizedBox(height: 20.0),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {    Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const AuthScreen(
+                      isLogin: true,
+                    ),
+                  ),
+                );},
                           style: ElevatedButton.styleFrom(
-                           primary: Color.fromARGB(255, 115, 124, 220).withOpacity(.5),
-                            onPrimary: Colors.white,
+                           foregroundColor: Colors.white, backgroundColor: Color.fromARGB(255, 115, 124, 220).withOpacity(.5),
                             fixedSize: const Size(250, 45),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0),
