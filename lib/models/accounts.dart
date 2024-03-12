@@ -5,10 +5,10 @@ class Accounts extends ChangeNotifier {
   List<Account> accounts = [];
   late Account currAccount;
   int nextId = 0;
-  String addAccount(String name, String email, String password) {
+ bool addAccount(String name, String email, String password) {
     for (Account account in accounts) {
       if (account.getEmail() == email) {
-        return 'Email already exists';
+        return false;
       }
     }
     accounts.add(
@@ -22,7 +22,7 @@ class Accounts extends ChangeNotifier {
     currAccount = accounts.last;
     nextId++;
     notifyListeners();
-    return 'Account created';
+    return true;
   }
 
   void deleteAccount() {
