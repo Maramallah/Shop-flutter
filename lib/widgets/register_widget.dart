@@ -3,6 +3,7 @@ import 'package:shop/screens/types_screen.dart';
 import 'package:shop/widgets/text_form_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 RegExp emailPattern =
     RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
 RegExp passwordPattern =
@@ -118,17 +119,24 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 setState(() {});
                 return;
               }
-              value.addAccount(
+              if (value.addAccount(
                 nameController.text,
                 emailController.text.toLowerCase(),
                 passwordController.text,
-              );
-              Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(
-                  builder: (context) => const TypesScreen(),
-                ),
-                (Route<dynamic> route) => false,
-              );
+              )) {
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (context) => const TypesScreen(),
+                  ),
+                  (Route<dynamic> route) => false,
+                );
+              } else {
+                setState(
+                  () {
+                    warningText = "Email already exists";
+                  },
+                );
+              }
             },
             child: const Text(
               "Register",
