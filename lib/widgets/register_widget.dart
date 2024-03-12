@@ -120,7 +120,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
               }
               value.addAccount(
                 nameController.text,
-                emailController.text,
+                emailController.text.toLowerCase(),
                 passwordController.text,
               );
               Navigator.of(context).pushAndRemoveUntil(
