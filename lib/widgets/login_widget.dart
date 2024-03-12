@@ -64,7 +64,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   warningText = 'Please fill in all fields';
                 });
               }
-              if (value.login(emailController.text, passwordController.text)) {
+              if (value.login(emailController.text.toLowerCase(), passwordController.text)) {
                 Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
                     builder: (context) => const TypesScreen(),
