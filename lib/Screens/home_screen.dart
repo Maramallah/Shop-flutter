@@ -73,6 +73,12 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     _controller.repeat(reverse: true);
     _controller.forward();
   }
+   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {

@@ -26,7 +26,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,
-              color: Colors.grey,
+              color: Color.fromARGB(246, 77, 68, 68),
             ),
           ),
           TextFormFieldWidget(
@@ -47,7 +47,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   },
                 );
               },
-              icon: Icon(visText ? Icons.visibility : Icons.visibility_off),
+              icon: Icon(visText ? Icons.visibility_off : Icons.visibility),
             ),
           ),
           const SizedBox(
@@ -58,8 +58,8 @@ class _LoginWidgetState extends State<LoginWidget> {
               backgroundColor: Colors.black,
             ),
             onPressed: () {
-              if (emailController.text.isEmpty ||
-                  passwordController.text.isEmpty) {
+              if (emailController.text.trim().isEmpty ||
+                  passwordController.text.trim().isEmpty) {
                 setState(() {
                   warningText = 'Please fill in all fields';
                 });
