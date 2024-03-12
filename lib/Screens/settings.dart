@@ -1,13 +1,17 @@
 import 'dart:async';
 
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shop/const/colors.dart';
-import 'package:shop/widgets/ExapansionPanel.dart';
+import 'package:shop/constants/colors.dart';
+import 'package:shop/models/accounts.dart';
+import 'package:shop/screens/auth_screen.dart';
+import 'package:shop/screens/home_screen.dart';
+import 'package:shop/screens/profile_screen.dart';
+import 'package:shop/widgets/exapansion_panel.dart';
 import 'package:shop/widgets/customlevatedbutton.dart';
 import 'package:shop/widgets/settings_feature.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -31,15 +35,15 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return Consumer<Accounts>(
+      builder: (context, value, child) => Scaffold(
         body: Container(
           decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  colors: gradientBackGround,
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight)),
+            gradient: LinearGradient(
+                colors: gradientBackGround,
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight),
+          ),
           child: Center(
             child: Container(
               height: MediaQuery.of(context).size.height * 0.90,
@@ -54,13 +58,15 @@ class _SettingsState extends State<Settings> {
                   Align(
                     alignment: Alignment.topLeft,
                     child: IconButton(
-                        onPressed: () {},
-                        // TODO: Navigator function required here to the page behind it.
-                        icon: Icon(
-                          Icons.arrow_back,
-                          color: Colors.black,
-                          size: MediaQuery.of(context).size.width * 0.08,
-                        )),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: Colors.black,
+                        size: MediaQuery.of(context).size.width * 0.08,
+                      ),
+                    ),
                   ),
                   Text(
                     "Settings",
@@ -105,25 +111,28 @@ class _SettingsState extends State<Settings> {
                     thickness: 1,
                   ),
                   SettingsFeature(
-                      icon: Icons.lens_blur,
-                      featureName: "Font size",
-                      child: SliderTheme(
-                          data: SliderThemeData(
-                            trackHeight:
-                                MediaQuery.of(context).size.height * 0.008,
-                          ),
-                          child: Slider(
-                            value: _currentSliderValue,
-                            min: 0.25,
-                            max: 2,
-                            divisions: 7,
-                            onChanged: (double value) {
-                              setState(() {
-                                _currentSliderValue = value;
-                              });
+                    icon: Icons.lens_blur,
+                    featureName: "Font size",
+                    child: SliderTheme(
+                      data: SliderThemeData(
+                        trackHeight: MediaQuery.of(context).size.height * 0.008,
+                      ),
+                      child: Slider(
+                        value: _currentSliderValue,
+                        min: 0.25,
+                        max: 2,
+                        divisions: 7,
+                        onChanged: (double value) {
+                          setState(
+                            () {
+                              _currentSliderValue = value;
                             },
-                            label: 'x$_currentSliderValue',
-                          ))),
+                          );
+                        },
+                        label: 'x$_currentSliderValue',
+                      ),
+                    ),
+                  ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.01,
                   ),
@@ -145,9 +154,11 @@ class _SettingsState extends State<Settings> {
                           color: Colors.deepPurpleAccent,
                         ),
                         onChanged: (value) {
-                          setState(() {
-                            dropdownValue = value!;
-                          });
+                          setState(
+                            () {
+                              dropdownValue = value!;
+                            },
+                          );
                         },
                         items: languageList
                             .map<DropdownMenuItem<String>>((String value) {
@@ -171,7 +182,6 @@ class _SettingsState extends State<Settings> {
                     endIndent: 25,
                     thickness: 1,
                   ),
-                  //TODO: Saved Items Widget
                   SettingsFeature(
                     icon: Icons.save,
                     featureName: "Saved Items",
@@ -179,14 +189,15 @@ class _SettingsState extends State<Settings> {
                       height: MediaQuery.of(context).size.height * 0.05,
                       width: MediaQuery.of(context).size.width * 0.28,
                       child: OutlinedButton(
-                          onPressed: () => _dialogBuilder(context),
-                          child: Text(
-                            'Open List',
-                            style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.width * 0.035,
-                                fontWeight: FontWeight.w900),
-                          )),
+                        onPressed: () => _dialogBuilder(context),
+                        child: Text(
+                          'Open List',
+                          style: TextStyle(
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.035,
+                              fontWeight: FontWeight.w900),
+                        ),
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -197,7 +208,7 @@ class _SettingsState extends State<Settings> {
                     endIndent: 25,
                     thickness: 1,
                   ),
-                  //TODO: Profile Widget
+
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 30),
                     color: transparent,
@@ -206,7 +217,11 @@ class _SettingsState extends State<Settings> {
                           transparent, // Set the Material color to transparent
                       child: InkWell(
                         onTap: () {
-                          //TODO: Link the page Navigator towards the (profile page with the user details)
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (ctx) => const ProfileScreen(),
+                            ),
+                          );
                         },
                         child: SettingsFeature(
                           icon: Icons.person_pin_circle_outlined,
@@ -237,7 +252,16 @@ class _SettingsState extends State<Settings> {
                           transparent, // Set the Material color to transparent
                       child: InkWell(
                         onTap: () {
-                          //TODO: Link the Navigator toward the delete user data function (and login page afterwards).
+                          value.logout();
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (ctx) => const AuthScreen(
+                                isLogin: true,
+                              ),
+                            ),
+                            (Route<dynamic> route) => false,
+                          );
                         },
                         child: SettingsFeature(
                           icon: FontAwesomeIcons.doorOpen,
@@ -261,19 +285,25 @@ class _SettingsState extends State<Settings> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
-
-                  //TODO: Delete Button Widget
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       CustomButton(
                           text: ' Delete Account ',
-                          BackgroundColor: Colors.red,
-                          ForeGroundColor: Colors.white,
-                          BorderSideColor: Colors.black,
-                          BorderWidth: 0.5,
-                          onPressed:
-                              () {}, //TODO: Link this function to a Navigator Towards the delete account function
+                          backGroundColor: Colors.red,
+                          foreGroundColor: Colors.white,
+                          borderSideColor: Colors.black,
+                          borderWidth: 0.5,
+                          onPressed: () {
+                            value.deleteAccount();
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (ctx) => const HomeScreen(),
+                              ),
+                              (Route<dynamic> route) => false,
+                            );
+                          },
                           icon: FontAwesomeIcons.trashCan)
                     ],
                   ),
@@ -288,31 +318,36 @@ class _SettingsState extends State<Settings> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RichText(
-                                text: TextSpan(children: [
-                              TextSpan(
-                                text: "About",
-                                style: const TextStyle(
-                                    color: foregroundColorForLowerText),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    _launchURL(
-                                        Uri.parse('https://flutter.dev/'));
-                                  },
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: "About",
+                                    style: const TextStyle(
+                                        color: foregroundColorForLowerText),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        _launchURL(
+                                            Uri.parse('https://flutter.dev/'));
+                                      },
+                                  ),
+                                  const TextSpan(
+                                      text: ' . ',
+                                      style: TextStyle(
+                                          color: foregroundColorForLowerText)),
+                                  TextSpan(
+                                    text: "Help & Support",
+                                    style: const TextStyle(
+                                        color: foregroundColorForLowerText),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        _launchURL(
+                                          Uri.parse('https://flutter.dev/'),
+                                        );
+                                      },
+                                  )
+                                ],
                               ),
-                              const TextSpan(
-                                  text: ' . ',
-                                  style: TextStyle(
-                                      color: foregroundColorForLowerText)),
-                              TextSpan(
-                                  text: "Help & Support",
-                                  style: const TextStyle(
-                                      color: foregroundColorForLowerText),
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {
-                                      _launchURL(
-                                          Uri.parse('https://flutter.dev/'));
-                                    })
-                            ]))
+                            )
                           ],
                         ),
                       ),

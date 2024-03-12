@@ -1,6 +1,4 @@
-
-
-import 'package:shop/model/Shop.dart';
+import 'package:shop/models/shops.dart';
 
 List<Shops> dataShops = [
   Shops(

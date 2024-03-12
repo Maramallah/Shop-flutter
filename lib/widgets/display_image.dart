@@ -1,36 +1,33 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+
 class DisplayImage extends StatelessWidget {
   final String imagePath;
   final VoidCallback onPressed;
 
   // Constructor
   const DisplayImage({
-    Key? key,
+    super.key,
     required this.imagePath,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    final color = Color.fromRGBO(94, 35, 153, 1);
+    const color = Color.fromRGBO(94, 35, 153, 1);
 
     return Center(
         child: Stack(children: [
       buildImage(color),
       Positioned(
-        child: buildEditIcon(color),
         right: 4,
         top: 10,
+        child: buildEditIcon(color),
       )
     ]));
   }
 
   // Builds Profile Image
   Widget buildImage(Color color) {
-   
-
     return CircleAvatar(
       radius: 75,
       backgroundColor: color,
@@ -56,9 +53,10 @@ class DisplayImage extends StatelessWidget {
     required double all,
   }) =>
       ClipOval(
-          child: Container(
-        padding: EdgeInsets.all(all),
-        color: Colors.white,
-        child: child,
-      ));
+        child: Container(
+          padding: EdgeInsets.all(all),
+          color: Colors.white,
+          child: child,
+        ),
+      );
 }

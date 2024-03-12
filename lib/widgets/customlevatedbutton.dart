@@ -1,23 +1,21 @@
-// ignore_for_file: non_constant_identifier_names
-
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
-  final Color BackgroundColor;
-  final Color ForeGroundColor;
-  final Color BorderSideColor;
-  final double BorderWidth;
+  final Color backGroundColor;
+  final Color foreGroundColor;
+  final Color borderSideColor;
+  final double borderWidth;
   final VoidCallback onPressed;
   final IconData icon;
 
   const CustomButton(
       {super.key,
       required this.text,
-      required this.BackgroundColor,
-      required this.ForeGroundColor,
-      required this.BorderSideColor,
-      required this.BorderWidth,
+      required this.backGroundColor,
+      required this.foreGroundColor,
+      required this.borderSideColor,
+      required this.borderWidth,
       required this.onPressed,
       required this.icon});
 
@@ -37,9 +35,9 @@ class CustomButton extends StatelessWidget {
       ),
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.all(15),
-        backgroundColor: BackgroundColor,
-        foregroundColor: ForeGroundColor,
-        side: BorderSide(color: BorderSideColor, width: BorderWidth),
+        backgroundColor: backGroundColor,
+        foregroundColor: foreGroundColor,
+        side: BorderSide(color: borderSideColor, width: borderWidth),
       ),
     );
   }
